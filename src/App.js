@@ -3,7 +3,21 @@ import {
   Button
 } from 'antd'
 
-export default class App extends Component {
+const withHOC = (MyComp) => {
+  return class withHOC extends Component {
+    render() {
+      return (
+        <>
+          <MyComp/>
+          <div>高阶组件的内容</div>
+        </>
+      )
+    }
+  }
+}
+
+@withHOC
+class App extends Component {
   render() {
     return (
       <div>
@@ -13,3 +27,6 @@ export default class App extends Component {
     )
   }
 }
+
+export default App
+
