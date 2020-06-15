@@ -1,3 +1,5 @@
-const { override } = require('customize-cra')
+const { override, addLessLoader } = require('customize-cra')
 
-module.exports = override()
+module.exports = override(
+  addLessLoader()
+)
