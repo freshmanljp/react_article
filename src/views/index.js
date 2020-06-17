@@ -1,0 +1,6 @@
+export { default as ArticleList } from './Article'
+export { default as ArticleEdit } from './Article/Edit'
+export { default as DashBoard } from './Dashboard'
+export { default as Login } from './Login'
+export { default as Setting } from './Setting'
+export { default as NotFound } from './NotFound'

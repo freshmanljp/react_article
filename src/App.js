@@ -1,29 +1,29 @@
 import React, { Component } from 'react'
-import {
-  Button
-} from 'antd'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { adminRouter } from './routes'
 
-const withHOC = (MyComp) => {
-  return class withHOC extends Component {
-    render() {
-      return (
-        <>
-          <MyComp/>
-          <div>高阶组件的内容</div>
-        </>
-      )
-    }
-  }
-}
-
-@withHOC
 class App extends Component {
   render() {
     return (
-      <div>
-        app
-        <Button>hello</Button>
-      </div>
+      <Router>
+        <Switch>
+          {
+            // admin页面的路由配置
+            adminRouter.map(adminComponent => {
+              return <Route path={adminComponent.pathname}
+              key={adminComponent.pathname}
+              // render方式利于后面的权限管理
+              render={(routerProps) => {
+                return <adminComponent.component {...routerProps}/>
+              }}
+              exact={adminComponent.exact}/>
+            })
+          }
+          {/* 同样需要重定向和404配置 */}
+          <Redirect to={adminRouter[0].pathname} from='/admin' exact />
+          <Redirect to='/404'/>
+        </Switch>
+      </Router>
     )
   }
 }
