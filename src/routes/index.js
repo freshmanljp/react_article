@@ -7,6 +7,9 @@
 //   NotFound
 // } from '../views'
 
+import React from 'react'
+import { DashboardOutlined, SettingOutlined, OrderedListOutlined } from '@ant-design/icons';
+
 // 路由懒加载的实现
 import Loadable from 'react-loadable'
 // loading为加载时的显示组件
@@ -50,14 +53,23 @@ export const mainRouter = [{
 // admin部分路由
 export const adminRouter = [{
   pathname: '/admin/dashboard',
-  component: DashBoard
+  component: DashBoard,
+  title:'数据统计',
+  isNav: true,
+  icon: () => (<DashboardOutlined />)
 }, {
   pathname: '/admin/setting',
-  component: Setting
+  component: Setting,
+  title:'系统设置',
+  isNav: true,
+  icon: () => (<SettingOutlined />)
 }, {
   pathname: '/admin/article',
   component: ArticleList,
-  exact: true
+  title:'文章列表',
+  exact: true,
+  isNav: true,
+  icon: () => (<OrderedListOutlined />)
 }, {
   // 文章编辑页面需要id动态路由
   pathname: '/admin/edit/:id',
