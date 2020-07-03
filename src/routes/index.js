@@ -58,21 +58,21 @@ export const adminRouter = [{
   isNav: true,
   icon: () => (<DashboardOutlined />)
 }, {
+  pathname: '/admin/article',
+  component: ArticleList,
+  title:'文章管理',
+  exact: true,
+  isNav: true,
+  icon: () => (<OrderedListOutlined />)
+}, {
   pathname: '/admin/setting',
   component: Setting,
   title:'系统设置',
   isNav: true,
   icon: () => (<SettingOutlined />)
 }, {
-  pathname: '/admin/article',
-  component: ArticleList,
-  title:'文章列表',
-  exact: true,
-  isNav: true,
-  icon: () => (<OrderedListOutlined />)
-}, {
   // 文章编辑页面需要id动态路由
-  pathname: '/admin/edit/:id',
+  pathname: '/admin/article/edit/:id',
   component: ArticleEdit
 }, {
   pathname: '/404',

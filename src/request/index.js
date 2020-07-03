@@ -9,7 +9,8 @@ const service = axios.create({
 
 // 注意写到use方法，不然会卡死
 service.interceptors.request.use((config) => {
-  config.data = Object.assign(config.data, {
+  // 注意，源对象为{}，config的data有可能为空，作为目标对象可能会出错
+  config.data = Object.assign({}, config.data, {
     authToken: 'tokenPlaceHolder'
   })
   return config
@@ -30,3 +31,12 @@ export const getArticleList = (page = 1, limited = 10) => {
     limited
   })
 } 
+export const deleteArticleById = ((id) => {
+  return service.post('/api/v1/articleDelete/' + id)
+})
+export const queryArticleById = ((id) => {
+  return service.post(`/api/v1/articleQuery/${id}`)
+})
+export const editArticleById = ((id) => {
+  return service.post(`/api/v1/articleEdit/${id}`)
+})
