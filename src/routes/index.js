@@ -40,6 +40,10 @@ const NotFound = Loadable({
   loader: () => import('../views/NotFound'),
   loading: Loading
 })
+const Notifications = Loadable({
+  loader: () => import('../views/Notifications'),
+  loading: Loading
+})
 
 // 同一级别的路由定义到一起
 // 主页面路由
@@ -77,6 +81,9 @@ export const adminRouter = [{
 }, {
   pathname: '/404',
   component: NotFound
+}, {
+  pathname: '/admin/notifications',
+  component: Notifications
 }]
 
 

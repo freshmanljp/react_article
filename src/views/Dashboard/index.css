@@ -1,0 +1,15 @@
+.gutter-box {
+  background-color: pink;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  border-radius: 20px;
+}
+.ant-card {
+  margin-bottom: 15px;
+}
+.chart {
+  margin: auto;
+  width: 800px;
+  height: 400px;
+}

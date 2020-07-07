@@ -31,12 +31,18 @@ export const getArticleList = (page = 1, limited = 10) => {
     limited
   })
 } 
-export const deleteArticleById = ((id) => {
+export const deleteArticleById = (id) => {
   return service.post('/api/v1/articleDelete/' + id)
-})
-export const queryArticleById = ((id) => {
+}
+export const queryArticleById = (id) => {
   return service.post(`/api/v1/articleQuery/${id}`)
-})
-export const editArticleById = ((id) => {
+}
+export const editArticleById = (id) => {
   return service.post(`/api/v1/articleEdit/${id}`)
-})
+}
+export const queryArticleAmount = () => {
+  return service.post(`/api/v1/articleAmount`)
+}
+export const getMessageList = () => {
+  return service.post('/api/v1/message')
+}
