@@ -10,16 +10,18 @@ import { adminRouter } from '../../routes'
 import { withRouter } from 'react-router-dom'
 
 import { receivedNotifications } from '../../actions/Notifications'
+import { logout } from '../../actions/User'
 
 const { Header, Content, Sider } = Layout;
 
 const mapState = (state) => {
   return {
-    listLength: state.notifications.list.filter(item => item.isRead === false).length
+    listLength: state.notifications.list.filter(item => item.isRead === false).length,
+    userInfo: state.user
   }
 }
 
-@connect(mapState, { receivedNotifications })
+@connect(mapState, { receivedNotifications, logout })
 @withRouter
 class index extends Component {
   componentDidMount = () => {
@@ -29,7 +31,11 @@ class index extends Component {
     this.props.history.push(key)
   }
   dropdownClick = ({ key }) => {
-    this.props.history.push(key)
+    if(key === '/login') {
+      this.props.logout()
+    } else {
+      this.props.history.push(key)
+    }
   }
   render() {
     // header下拉菜单的菜单配置
@@ -43,7 +49,7 @@ class index extends Component {
           </Badge>
         </Menu.Item>
         <Menu.Item
-          key="/admin/setting"
+          key="/admin/profile"
         >
           个人设置
         </Menu.Item>
@@ -63,8 +69,8 @@ class index extends Component {
           <div>
             <Dropdown overlay={menu} trigger={['click']}>
               <div className="dropdown">
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                <span>欢迎您，发如雪&nbsp;</span>
+                <Avatar src={this.props.userInfo.avatar} />
+                <span>欢迎您，{this.props.userInfo.displayName}&nbsp;</span>
                 {/* 消息提醒图标 */}
                 <Badge count={this.props.listLength} offset={[10, -5]}>
                   <DownOutlined />

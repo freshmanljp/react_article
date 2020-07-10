@@ -99,6 +99,9 @@ export default class index extends Component {
       .then((res) => {
         const columnsKeys = Object.keys(res.list[0])
         const columns = this.createColumns(columnsKeys, titleMap)
+        // 页面切换过快时，Ajax回调函数执行时绑定的组件可能已经不是此组件，setstate便会出错，因此需要进行isMounted判断
+        // console.log(this.updater.isMounted)  //通过此方法判断
+        if (!this.updater.isMounted) return
         this.setState({
           total: res.total,
           columns: columns,

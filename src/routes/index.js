@@ -44,6 +44,14 @@ const Notifications = Loadable({
   loader: () => import('../views/Notifications'),
   loading: Loading
 })
+const NoAuth = Loadable({
+  loader: () => import('../views/NoAuth'),
+  loading: Loading
+})
+const Profile = Loadable({
+  loader: () => import('../views/Profile'),
+  loading: Loading
+})
 
 // 同一级别的路由定义到一起
 // 主页面路由
@@ -60,30 +68,40 @@ export const adminRouter = [{
   component: DashBoard,
   title:'数据统计',
   isNav: true,
-  icon: () => (<DashboardOutlined />)
+  icon: () => (<DashboardOutlined />),
+  role: ['001', '002', '003']
 }, {
   pathname: '/admin/article',
   component: ArticleList,
   title:'文章管理',
   exact: true,
   isNav: true,
-  icon: () => (<OrderedListOutlined />)
+  icon: () => (<OrderedListOutlined />),
+  role: ['001', '002', '003']
 }, {
   pathname: '/admin/setting',
   component: Setting,
   title:'系统设置',
   isNav: true,
-  icon: () => (<SettingOutlined />)
+  icon: () => (<SettingOutlined />),
+  role: ['001']
 }, {
   // 文章编辑页面需要id动态路由
   pathname: '/admin/article/edit/:id',
-  component: ArticleEdit
-}, {
-  pathname: '/404',
-  component: NotFound
+  component: ArticleEdit,
+  role: ['001', '002']
 }, {
   pathname: '/admin/notifications',
-  component: Notifications
+  component: Notifications,
+  role: ['001', '002', '003']
+}, {
+  pathname: '/admin/noAuth',
+  component: NoAuth,
+  role: ['001', '002', '003']
+}, {
+  pathname: '/admin/profile',
+  component: Profile,
+  role: ['001', '002', '003']
 }]
 
 

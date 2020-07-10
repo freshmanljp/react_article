@@ -6,6 +6,10 @@ const isDev = process.env.NODE_ENV === 'development'
 const service = axios.create({
   baseURL: isDev ? 'http://rap2.taobao.org:38080/app/mock/258518' : ''
 })
+// 不需要拦截的网络请求处理
+const serviceWithNoInter = axios.create({
+  baseURL: isDev ? 'http://rap2.taobao.org:38080/app/mock/258518' : ''
+})
 
 // 注意写到use方法，不然会卡死
 service.interceptors.request.use((config) => {
@@ -46,3 +50,9 @@ export const queryArticleAmount = () => {
 export const getMessageList = () => {
   return service.post('/api/v1/message')
 }
+
+// 登录请求，不需要加token
+export const loginRequest = (value) => {
+  return serviceWithNoInter.post('/api/v1/login', value)
+}
+
